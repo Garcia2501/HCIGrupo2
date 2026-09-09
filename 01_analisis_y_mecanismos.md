@@ -169,3 +169,10 @@ Se analizan cuatro mecanismos alternativos al proceso actual, evaluados según l
 ### ✅ Mecanismo seleccionado: Híbrido
 
 El **mecanismo híbrido** es la alternativa con el mayor equilibrio entre eficiencia operativa, inclusión del paciente y factibilidad técnica para el contexto de GABO'S. Reduce el tiempo de confirmación al nivel del autoagendamiento para la mayoría de casos, mantiene un canal asistido para excepciones, centraliza toda la información y genera indicadores de desempeño automáticamente, resolviendo directamente las fricciones críticas detectadas en el flujo AS-IS.
+
+---
+
+## Conclusión
+
+El análisis AS-IS del proceso de gestión de citas en GABO'S evidencia que el sistema actual, basado en WhatsApp y agenda física, no cumple con los principios básicos de usabilidad e IHC: carece de visibilidad del estado del sistema, genera sobrecarga cognitiva en el personal y no escala sin reprocesos. La comparación de mecanismos demuestra que el **mecanismo híbrido** es la alternativa más adecuada, ya que combina la eficiencia del autoagendamiento con la flexibilidad humana, siendo inclusivo y factible técnicamente para el contexto del centro.
+
