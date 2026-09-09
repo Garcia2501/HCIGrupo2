@@ -30,7 +30,7 @@ El análisis y los entregables se encuentran organizados en los siguientes módu
 
 El prototipo de fidelidad media que evidencia el flujo completo de consulta, registro, modificación, reagendamiento y cancelación de citas se encuentra disponible en el siguiente enlace de visualización pública:
 
-👉 **[Enlace al Prototipo en Figma](PEGA_AQUÍ_EL_ENLACE_DE_FIGMA)**
+👉 **[Enlace al Prototipo en Figma](https://www.figma.com/make/8EAC09nLDxo64JqiCcenq8/Prototipo-GABO-S-Readaptaci%C3%B3n?t=9bLFf6EjfkmuhT49-1)**
 
 ---
 
