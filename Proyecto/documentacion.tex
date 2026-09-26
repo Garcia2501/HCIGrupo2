@@ -1,0 +1,388 @@
+\documentclass[12pt,a4paper]{article}
+
+% Idioma, codificación y tipografía
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+
+% Página, gráficos y tablas
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor} % Permite pintar celdas de gris
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={Usability Test Dashboard 2.0 -- Sprint 1},
+    pdfauthor={Equipo del proyecto}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\renewcommand{\arraystretch}{1.25}
+\setlist[itemize]{leftmargin=*,nosep}
+\setlist[enumerate]{leftmargin=*,nosep}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{%
+    \begin{minipage}[c]{1.5cm}
+        \centering
+        \IfFileExists{imagenes/uta.png}{%
+            \includegraphics[width=1.5cm]{imagenes/uta.png}%
+        }{%
+            \makebox[1.5cm][c]{\rule{0pt}{1.5cm}}%
+        }
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[c]{10cm}
+        \centering
+        \small {\textbf{UNIVERSIDAD TÉCNICA DE AMBATO}} \\[0.1cm]
+        \scriptsize \textit{FACULTAD DE INGENIERÍA EN SISTEMAS ELECTRÓNICA E INDUSTRIAL} \\[0.1cm]
+        \scriptsize \textbf{CARRERA SOFTWARE} \\[0.1cm]
+        \scriptsize \textbf{CICLO ACADÉMICO: JULIO - DICIEMBRE 2026}
+        \vspace{0.2cm}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[c]{1.5cm}
+        \centering
+        \IfFileExists{imagenes/fisei.png}{%
+            \includegraphics[width=1.5cm]{imagenes/fisei.png}%
+        }{%
+            \makebox[1.5cm][c]{\rule{0pt}{1.5cm}}%
+        }
+    \end{minipage}%
+}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{58pt}
+\setlength{\headsep}{12pt}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\begin{document}
+
+% Portada
+\begin{titlepage}
+    \centering
+    {\large\textbf{UNIVERSIDAD TÉCNICA DE AMBATO}}\\[0.35cm]
+    {\large Facultad de Ingeniería en Sistemas, Electrónica e Industrial}\\[0.2cm]
+    {\large Carrera de Software}\\[0.2cm]
+    {\large Ciclo académico: julio -- diciembre de 2026}\\[2.0cm]
+
+    {\Large\bfseries Documentación del Sprint 1}\\[0.7cm]
+    {\LARGE\bfseries Usability Test Dashboard 2.0}\\[0.6cm]
+    {\large Plataforma de análisis de usabilidad asistido por inteligencia artificial}\\[2.0cm]
+
+    \begin{tabular}{>{\bfseries}r l}
+        Product Owner: & Luis \\
+        Scrum Master: & Kevin \\
+        Development Team: & Manolo y Ariel \\
+        Período del sprint: & 23 -- 30 de septiembre de 2026 \\
+        Capacidad planificada: & 32 horas de equipo \\
+    \end{tabular}
+
+    \vfill
+    {Ambato, Ecuador}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+\section{Contexto y objetivo del proyecto}
+
+\textit{Usability Test Dashboard 2.0} es una plataforma para que evaluadores UX
+incorporen imágenes o bocetos de interfaces y observaciones de pruebas de usabilidad.
+El sistema utilizará inteligencia artificial para analizar esa información y generar
+historias de usuario para el Product Backlog.
+
+\subsection{Objetivo del Sprint 1}
+
+Establecer la base del producto y avanzar en la carga de bocetos y en la definición
+de la experiencia y la arquitectura necesarias para cumplir el objetivo de respuesta
+de la inteligencia artificial. El sprint comprende del 23 al 30 de septiembre de 2026,
+con una capacidad total planificada de 32 horas para el equipo.
+
+\subsection{Definition of Done del Sprint 1}
+
+Para considerar completo el Sprint 1, se recopilarán las evidencias que aplican a
+esta iteración. La matriz solicita que los artefactos visuales se entreguen en formato
+PNG.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Definition of Done y evidencias requeridas para el Sprint 1}
+    \label{tab:definition-of-done}
+    \begin{tabularx}{\textwidth}{L{2.7cm}Y L{2.7cm} L{2.0cm}}
+        \toprule
+        \textbf{Área} & \textbf{Evidencia requerida} & \textbf{Herramienta} & \textbf{Formato / estado} \\
+        \midrule
+        UX Research & User Persona y Journey Map & Miro o FigJam & PNG; pendiente \\
+        Diseño UI/UX & Mockups que muestren jerarquía visual & Figma & PNG; pendiente \\
+        Arquitectura de información & User Flow & Figma o Miro & PNG; pendiente \\
+        Agile UX & Sprint Backlog gestionado en tablero Kanban & Trello & PNG; tablero estructurado, captura pendiente \\
+        GitHub & Repositorio funcional, código fuente y documentación & GitHub & PNG de evidencia; repositorio creado, validar contenido \\
+        Evidencia técnica & Proyecto base organizado y funcional & VS Code & PNG; pendiente \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+La Definition of Done anterior corresponde únicamente al Sprint 1. Los criterios de
+la matriz destinados a sprints futuros quedan fuera del alcance de este documento.
+
+\section{Equipo y responsabilidades}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Roles oficiales y responsabilidades del equipo}
+    \label{tab:roles}
+    \begin{tabularx}{\textwidth}{L{2.6cm} L{2.0cm}Y}
+        \toprule
+        \textbf{Integrante} & \textbf{Rol} & \textbf{Responsabilidades principales} \\
+        \midrule
+        Luis & Product Owner & Priorizar el Product Backlog, definir historias de usuario y validar que el asistente evalúe la usabilidad. Apoya en pruebas de Figma, validación UX y diseño de prompts para IA. \\
+        Kevin & Scrum Master & Facilitar Daily Standups y planificación, gestionar Trello y eliminar bloqueos. Apoya en GitHub Projects, DevOps básico, Docker y desarrollo. \\
+        Manolo & Development Team & Participar en arquitectura, lógica de negocio, API, base de datos e integración de IA. \\
+        Ariel & Development Team & Participar en arquitectura, lógica de negocio, frontend, base de datos e integración de IA. \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\section{Análisis de capacidad}
+
+La capacidad disponible comunicada para el Sprint 1 es de 32 horas de equipo. La
+distribución de esas horas entre integrantes y actividades debe mantenerse en el
+tablero de Trello para hacer visible el trabajo comprometido y el trabajo restante.
+Los puntos de historia incluidos en este documento son estimaciones sugeridas y no
+han sido confirmados por el Development Team; no representan una conversión directa
+de las 32 horas disponibles.
+
+\section{Sprint Backlog}
+
+Las historias de usuario y el requerimiento no funcional en progreso para este sprint
+son los siguientes. Los puntos y responsables que aparecen en la tabla son propuestas
+iniciales: deben validarse con el Development Team y registrarse en Trello antes de
+confirmar el compromiso del Sprint Backlog.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Elementos en progreso del Sprint 1}
+    \label{tab:sprint-backlog}
+    \begin{tabularx}{\textwidth}{L{1.5cm}Y L{2.3cm} L{1.7cm} L{1.8cm}}
+        \toprule
+        \textbf{ID} & \textbf{Elemento} & \textbf{Responsable propuesto} & \textbf{Puntos propuestos} & \textbf{Estado} \\
+        \midrule
+        RF-01 & Subida de bocetos & Manolo y Ariel; Luis valida & 5 SP (provisional) & En progreso \\
+        RNF-01 & Tiempo de respuesta IA menor a 10 s & Manolo y Ariel; Luis valida UX & 8 SP (provisional) & En progreso \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\subsection{Trabajo previsto por elemento}
+
+\begin{itemize}
+    \item \textbf{RF-01:} análisis de requerimientos base, definición del flujo de usuario y diseño de las pantallas de carga.
+    \item \textbf{RNF-01:} investigación de soluciones UX para gestionar la latencia (indicadores de carga y esqueletos) y definición del stack backend.
+\end{itemize}
+
+\section{Historias de usuario y criterios de aceptación}
+
+Los siguientes textos formalizan el alcance compartido para el Sprint 1. Las
+estimaciones son propuestas para planificación, no compromisos definitivos: deben
+validarse con el equipo. Los formatos, tamaños y límites de archivos, así como las
+condiciones de medición del tiempo de respuesta, deben ser definidos por el Product
+Owner y el Development Team.
+
+\subsection{RF-01 -- Subida de bocetos}
+
+\vspace{0.5cm}
+\begin{longtable}{|p{0.45\textwidth}|p{0.45\textwidth}|}
+\hline
+\rowcolor{gray!20}
+\multicolumn{2}{|l|}{\textbf{Historia de Usuario: RF-01 -- Subida de bocetos}} \\ \hline
+\textbf{Número:} RF-01 & \textbf{Usuario:} Evaluador UX \\ \hline
+\multicolumn{2}{|l|}{\textbf{Nombre historia:} Subida de bocetos} \\ \hline
+\textbf{Prioridad de negocio:} Alta & \textbf{Riesgo en desarrollo:} Medio \\ \hline
+\textbf{Puntos estimados:} 5 SP & \textbf{Iteración asignada:} Sprint 1 \\ \hline
+\multicolumn{2}{|l|}{\textbf{Programador responsable:} Manolo y Ariel (Development Team)} \\ \hline
+\multicolumn{2}{|p{0.9\textwidth}|}{
+\textbf{Descripción:}\newline
+COMO evaluador UX,\newline
+QUIERO subir imágenes o bocetos de interfaces a la plataforma,\newline
+PARA incorporarlos al análisis de usabilidad asistido por inteligencia artificial y generar historias de usuario para el Product Backlog.
+} \\ \hline
+\multicolumn{2}{|l|}{\textbf{Validación:}} \\ \hline
+\multicolumn{2}{|p{0.9\textwidth}|}{
+\textbf{Escenario 1: Selección y vista previa}\newline
+DADO: Que el evaluador UX se encuentra en la pantalla de carga de una prueba de usabilidad,\newline
+CUANDO: Selecciona una imagen o un boceto desde su dispositivo,\newline
+ENTONCES: La plataforma muestra el archivo seleccionado y una vista previa, y permite confirmar o cancelar la carga.
+} \\ \hline
+\multicolumn{2}{|p{0.9\textwidth}|}{
+\textbf{Escenario 2: Carga correcta}\newline
+DADO: Que el archivo cumple las restricciones definidas por la plataforma,\newline
+CUANDO: El evaluador confirma la carga,\newline
+ENTONCES: La plataforma confirma el resultado, asocia el archivo a la prueba y lo deja disponible para el análisis.
+} \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+
+\subsubsection*{Tareas y evidencia de diseño}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Desglose inicial de trabajo para RF-01}
+    \label{tab:tareas-rf01}
+    \begin{tabularx}{\textwidth}{L{1.7cm}Y L{2.7cm} L{1.7cm}}
+        \toprule
+        \textbf{ID} & \textbf{Tarea} & \textbf{Responsable} & \textbf{Estado} \\
+        \midrule
+        RF-01.1 & Analizar los requerimientos base de carga & Luis; revisión del Development Team & En progreso \\
+        RF-01.2 & Definir el flujo de usuario para cargar un boceto & Luis; revisión del Development Team & En progreso \\
+        RF-01.3 & Diseñar las pantallas de carga & Luis; revisión del Development Team & En progreso \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\subsection{RNF-01 -- Tiempo de respuesta de la IA menor a 10 segundos}
+
+\vspace{0.5cm}
+\begin{longtable}{|p{0.45\textwidth}|p{0.45\textwidth}|}
+\hline
+\rowcolor{gray!20}
+\multicolumn{2}{|l|}{\textbf{Historia de Usuario: RNF-01 -- Tiempo de respuesta de IA}} \\ \hline
+\textbf{Número:} RNF-01 & \textbf{Usuario:} Evaluador UX \\ \hline
+\multicolumn{2}{|l|}{\textbf{Nombre historia:} Tiempo de respuesta de IA menor a 10 segundos} \\ \hline
+\textbf{Prioridad de negocio:} Por definir con el PO & \textbf{Riesgo en desarrollo:} Por evaluar \\ \hline
+\textbf{Puntos estimados:} 8 SP & \textbf{Iteración asignada:} Sprint 1 \\ \hline
+\multicolumn{2}{|l|}{\textbf{Programador responsable:} Manolo y Ariel (Development Team)} \\ \hline
+\multicolumn{2}{|p{0.9\textwidth}|}{
+\textbf{Descripción:}\newline
+COMO evaluador UX,\newline
+QUIERO recibir el resultado del análisis de inteligencia artificial en menos de 10 segundos y conocer su estado mientras se procesa,\newline
+PARA revisar las observaciones y las historias de usuario generadas sin esperas prolongadas.
+} \\ \hline
+\multicolumn{2}{|l|}{\textbf{Validación:}} \\ \hline
+\multicolumn{2}{|p{0.9\textwidth}|}{
+\textbf{Escenario 1: Análisis dentro del umbral objetivo}\newline
+DADO: Que el evaluador inicia un análisis con una imagen y las observaciones requeridas, bajo un perfil de prueba previamente acordado,\newline
+CUANDO: El sistema recibe la solicitud de análisis,\newline
+ENTONCES: Las historias de usuario generadas quedan disponibles en menos de 10 segundos desde la recepción de la solicitud.
+} \\ \hline
+\multicolumn{2}{|p{0.9\textwidth}|}{
+\textbf{Escenario 2: Retroalimentación durante el procesamiento}\newline
+DADO: Que el evaluador ha iniciado un análisis y el resultado todavía no está disponible,\newline
+CUANDO: El sistema procesa la solicitud,\newline
+ENTONCES: La interfaz comunica que el análisis está en curso mediante un indicador de carga o un esqueleto, según la solución UX definida.
+} \\ \hline
+\multicolumn{2}{|p{0.9\textwidth}|}{
+\textbf{Escenario 3: El análisis supera el umbral objetivo}\newline
+DADO: Que el resultado no está disponible al cumplirse 10 segundos,\newline
+CUANDO: El procesamiento continúa,\newline
+ENTONCES: La interfaz comunica que existe una demora, no muestra la operación como completada y registra el incumplimiento para validación técnica.
+} \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+
+\subsubsection*{Trabajo previsto}
+
+\begin{itemize}
+    \item Investigar patrones UX para comunicar latencia, incluidos indicadores de carga y esqueletos.
+    \item Definir el enfoque para medir y validar el umbral de respuesta de menos de 10 segundos.
+    \item Evaluar y documentar la decisión del stack backend; .NET 8 con Entity Framework Core es una alternativa tentativa.
+\end{itemize}
+
+\section{Avances y productos del Sprint 1}
+
+Al momento de elaborar este documento, se reportan los siguientes avances:
+
+\begin{itemize}
+    \item Repositorio del proyecto creado en GitHub.
+    \item Tablero Kanban de Trello estructurado para gestionar el trabajo.
+    \item Script inicial del modelo entidad-relación para SQL Server finalizado.
+    \item RF-01 y RNF-01 en progreso.
+\end{itemize}
+
+Los resultados funcionales y el incremento verificable del producto se completarán
+con evidencia al cierre del Sprint 1.
+
+\section{Evidencias de UX/UI}
+
+La matriz de evaluación solicita evidencias de diseño y análisis UX/UI. Se registrará
+en esta sección el artefacto correspondiente y su ubicación o enlace cuando esté
+disponible.
+
+\subsection{User Persona}
+Evidencia requerida: User Persona en Miro o FigJam, exportada como PNG. Pendiente de elaborar e incorporar.
+
+\subsection{Journey Map}
+Evidencia requerida: Journey Map en Miro o FigJam, exportado como PNG. Pendiente de elaborar e incorporar.
+
+\subsection{User Flow de carga de bocetos}
+Evidencia requerida: User Flow de RF-01 en Figma o Miro, exportado como PNG. Pendiente de elaborar e incorporar.
+
+\subsection{Mockups de carga}
+Evidencia requerida: mockups de RF-01 en Figma que muestren jerarquía visual, exportados como PNG. Pendiente de elaborar e incorporar.
+
+\section{Base técnica y modelo de datos}
+
+\subsection{Repositorio y código base}
+El repositorio de GitHub ya fue creado. La evidencia del código base y las decisiones
+de arquitectura se incorporarán conforme avance la implementación. La Definition of
+Done solicita verificar el repositorio funcional, incluir el código fuente y la
+documentación, y adjuntar evidencia PNG.
+
+\subsection{Base de datos}
+Se finalizó un script inicial del modelo entidad-relación para SQL Server. Se debe
+incorporar el diagrama y validar el modelo frente a las entidades del proyecto, entre
+ellas pruebas, tareas, observaciones e historias de usuario.
+
+\subsection{Stack backend}
+La alternativa considerada es una API Web con .NET 8 y Entity Framework Core. La
+selección final del stack permanece pendiente de validación por el equipo.
+
+\section{Testing y validación}
+
+La validación de los criterios de aceptación de RF-01 y RNF-01 está pendiente. Al
+ejecutar las pruebas, se documentarán el caso, los datos utilizados, el resultado
+esperado, el resultado obtenido y la evidencia correspondiente. Para RNF-01 también
+se registrará el tiempo observado y el método de medición acordado. El perfil de
+prueba de rendimiento (ambiente, tamaño de imagen y volumen de observaciones) debe
+quedar documentado antes de evaluar el umbral de 10 segundos.
+
+\section{Gestión ágil del Sprint}
+
+\subsection{Tablero de Trello}
+El tablero Kanban de Trello ya está estructurado. Se añadirá como evidencia una captura
+o enlace que muestre el Product Backlog, el Sprint Backlog, los responsables, el estado
+de las tareas y los bloqueos. La matriz solicita exportar o capturar esta evidencia en
+formato PNG.
+
+\subsection{Ceremonias y seguimiento}
+Kevin, como Scrum Master, facilita las Daily Standups y la planificación del sprint,
+y da seguimiento a los bloqueos. Las fechas, acuerdos y acciones se registrarán como
+evidencia de gestión ágil.
+
+\section{Retrospectiva del Sprint}
+
+Pendiente de completar al finalizar el Sprint 1, registrando aspectos positivos,
+oportunidades de mejora y acciones acordadas para el siguiente sprint.
+
+\section{Métricas y conclusiones}
+
+La capacidad planificada es de 32 horas para el equipo. Las horas efectivamente
+trabajadas, el trabajo completado y las conclusiones del sprint se documentarán al
+cierre, con base en el seguimiento de Trello y las evidencias del incremento.
+
+\end{document}
