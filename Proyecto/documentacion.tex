@@ -72,30 +72,26 @@
 
 \begin{document}
 
-% Portada
-\begin{titlepage}
-    \centering
-    {\large\textbf{UNIVERSIDAD TÉCNICA DE AMBATO}}\\[0.35cm]
-    {\large Facultad de Ingeniería en Sistemas, Electrónica e Industrial}\\[0.2cm]
-    {\large Carrera de Software}\\[0.2cm]
-    {\large Ciclo académico: julio -- diciembre de 2026}\\[2.0cm]
+\thispagestyle{fancy}
+\begin{center}
+    {\Large\bfseries DOCUMENTACIÓN DEL SPRINT 1\par}
+\end{center}
 
-    {\Large\bfseries Documentación del Sprint 1}\\[0.7cm]
-    {\LARGE\bfseries Usability Test Dashboard 2.0}\\[0.6cm]
-    {\large Plataforma de análisis de usabilidad asistido por inteligencia artificial}\\[2.0cm]
+\section{Portada}
 
-    \begin{tabular}{>{\bfseries}r l}
-        Product Owner: & Luis \\
-        Scrum Master: & Kevin \\
-        Development Team: & Manolo y Ariel \\
-        Período del sprint: & 23 -- 30 de septiembre de 2026 \\
-        Capacidad planificada: & 32 horas de equipo \\
-    \end{tabular}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\raggedright\arraybackslash}p{6.2cm}X@{}}
+    Tema: & Usability Test Dashboard 2.0 -- Sprint 1 \\
+    Unidad de Organización Curricular: & PROFESIONAL \\
+    Nivel y Paralelo: & 5 - A \\
+    Alumnos participantes: &  Cholota Bastidas Ariel Isai \\
+                                             & García Amores Manolo José \\
+                                             & Miranda Tarupi Luis Sebastián \\
+                                             & Velasco Huayamave Kevin Andrés \\
+    Asignatura: & Interacción Humano Computador (IHC) \\
+    Docente: & Ing. Caiza Caizabuano José Ruben\\
+\end{tabularx}
 
-    \vfill
-    {Ambato, Ecuador}
-\end{titlepage}
-
+\vspace{1cm}
 \tableofcontents
 \clearpage
 \pagenumbering{arabic}
@@ -195,6 +191,80 @@ confirmar el compromiso del Sprint Backlog.
     \item \textbf{RF-01:} análisis de requerimientos base, definición del flujo de usuario y diseño de las pantallas de carga.
     \item \textbf{RNF-01:} investigación de soluciones UX para gestionar la latencia (indicadores de carga y esqueletos) y definición del stack backend.
 \end{itemize}
+
+\section{Análisis y requerimientos}
+
+\subsection{RF-01: Requerimientos funcionales base, módulos y perfiles}
+
+El análisis siguiente registra capacidades candidatas para la evolución del producto.
+Para mantener la trazabilidad del Sprint 1, el alcance comprometido de RF-01 sigue
+siendo la subida de bocetos, junto con su flujo y diseño de interfaz. Los demás
+requerimientos y módulos requieren priorización y estimación propias antes de
+considerarse parte de un sprint.
+
+\subsubsection{Perfiles de usuario (roles)}
+
+\begin{itemize}
+    \item \textbf{Evaluador o investigador UX:} configura planes de prueba, modera sesiones, registra tiempos y documenta observaciones empíricas.
+    \item \textbf{Líder o equipo de proyecto:} gestiona el Product Backlog y prioriza los hallazgos. En el equipo actual, estas responsabilidades corresponden al Product Owner y al equipo Scrum.
+    \item \textbf{Docente o revisor:} consulta y audita la matriz de usabilidad, la trazabilidad del código y las comparativas de diseño. Sus permisos específicos quedan por definir.
+\end{itemize}
+
+Los perfiles anteriores describen actores del producto. Las personas participantes
+de una prueba de usabilidad deben modelarse por separado de los roles de acceso a la
+plataforma.
+
+\subsubsection{Módulos principales propuestos}
+
+\begin{itemize}
+    \item \textbf{Módulo de evaluaciones:} asistente de configuración del test y bitácora para registrar resultados (éxito o fracaso), tiempos y errores por tarea.
+    \item \textbf{Dashboard analítico:} panel con métricas consolidadas, tendencias de severidad y tasas de completitud. Su viabilidad depende de registrar ejecuciones de tareas y definir sus métricas.
+    \item \textbf{Módulo de inteligencia artificial (\texttt{AiModule}):} componente asíncrono para resumir observaciones y generar borradores de historias en JSON estructurado.
+    \item \textbf{Módulo de gestión ágil (SCRUM):} capacidad candidata para administrar backlog, sprints y retrospectivas. Durante el Sprint 1, Trello es el tablero de seguimiento; no se compromete construir un tablero duplicado ni su integración.
+    \item \textbf{Módulo de exportación y evidencia:} generación de reportes Markdown y PDF, y consulta comparativa de diseños. Queda como capacidad futura por priorizar.
+\end{itemize}
+
+\subsubsection{Requerimientos funcionales candidatos}
+
+Los siguientes requerimientos proceden del análisis del Product Owner y deben
+refinarse, asignarse a identificadores y priorizarse en el Product Backlog:
+
+\begin{itemize}
+    \item Permitir la creación de un plan de prueba con objetivos, perfiles de participantes y guion de tareas.
+    \item Registrar para cada ejecución de tarea el resultado (éxito o fracaso), la duración y la cantidad de errores.
+    \item Procesar observaciones de texto libre mediante el servicio de IA y proponer una clasificación de problemas por categorías UX.
+    \item Convertir una recomendación validada en una historia de usuario dentro del backlog definido por el equipo.
+    \item Exportar los hallazgos validados en formatos integrables, inicialmente Markdown y PDF.
+\end{itemize}
+
+\subsubsection{Revisión técnica y de alcance}
+
+\begin{itemize}
+    \item \textbf{Arquitectura:} las capacidades pueden organizarse en módulos del backend NestJS y consumirse desde el frontend React. Para el producto inicial conviene mantener límites modulares sin asumir una arquitectura de microservicios.
+    \item \textbf{Persistencia:} SQL Server es adecuado para usuarios, pruebas, tareas, observaciones e historias; la capa de acceso a datos debe seleccionarse para el backend NestJS. Para soportar las métricas propuestas habrá que modelar las ejecuciones de tareas; para imágenes conviene almacenar el archivo fuera de la base relacional y guardar en SQL Server sus metadatos y ubicación.
+    \item \textbf{Procesamiento de IA:} una integración asíncrona puede implementarse mediante servicios del backend NestJS y un trabajador en segundo plano. El proveedor Gemini, un servicio denominado \texttt{GeminiService}, los DTO con \texttt{class-validator} y las pruebas Jest son propuestas compatibles del aporte de García, pero deben confirmarse antes de considerarse decisiones oficiales. Toda respuesta JSON debe validarse y mapearse a estructuras tipadas antes de persistirla.
+    \item \textbf{Gestión ágil:} mantener Trello como fuente de verdad del Sprint Backlog evita duplicar el estado. Una futura integración con otro tablero requiere una decisión explícita del equipo.
+    \item \textbf{Exportación:} Markdown, PDF y la integración con incidencias de GitHub son capacidades futuras propuestas; no forman parte de las dos historias comprometidas para el Sprint 1.
+\end{itemize}
+
+\subsection{RNF-01: Soluciones UX para gestionar la latencia de IA}
+
+Las respuestas de modelos de lenguaje pueden variar en duración. Las siguientes
+soluciones son viables en una interfaz web y deben acompañar, no sustituir, la
+medición del objetivo de respuesta de menos de 10 segundos:
+
+\begin{itemize}
+    \item \textbf{Skeleton screens (carga progresiva):} mostrar una estructura aproximada de la historia mientras se procesa la solicitud. El esqueleto debe anunciarse accesiblemente y desaparecer al mostrar el resultado o un estado de error.
+    \item \textbf{Microcopy de estado:} utilizar mensajes como ``Analizando observaciones'' o ``Preparando historias de usuario''. Mostrar fases concretas, como estructuración JSON, solo si el backend puede reportarlas; en caso contrario, usar un mensaje general sin simular progreso.
+    \item \textbf{Efecto visual shimmer:} puede aplicarse de forma sutil a los contenedores de carga. Debe respetar contraste y movimiento reducido (\texttt{prefers-reduced-motion}); la animación es un complemento y no debe comunicar por sí sola el estado.
+    \item \textbf{Degradación elegante:} el objetivo RNF-01 se incumple si el resultado no está disponible antes de los 10 segundos. La interfaz debe indicar que el análisis sigue pendiente y conservar el estado de la solicitud. El umbral de 15 segundos propuesto por el Product Owner puede utilizarse para activar una alternativa de espera o reintento, pero debe validarse y no debe presentarse como cumplimiento del RNF.
+    \item \textbf{Fallback confiable:} ante una caída o error, informar al usuario, conservar la solicitud cuando sea posible y permitir reintentar sin crear duplicados. No se recomienda reemplazar el resultado real por una síntesis simulada; si se usa una respuesta simulada en una demostración, debe identificarse claramente como tal.
+\end{itemize}
+
+La medición del umbral debe acordar el perfil de prueba (ambiente, tamaño de imagen,
+volumen de observaciones y punto inicial y final del cronómetro). La propuesta actual
+considera desde la recepción de la solicitud hasta que las historias generadas están
+disponibles para el evaluador; esta definición debe validarse antes de las pruebas.
 
 \section{Historias de usuario y criterios de aceptación}
 
@@ -300,7 +370,7 @@ ENTONCES: La interfaz comunica que existe una demora, no muestra la operación c
 \begin{itemize}
     \item Investigar patrones UX para comunicar latencia, incluidos indicadores de carga y esqueletos.
     \item Definir el enfoque para medir y validar el umbral de respuesta de menos de 10 segundos.
-    \item Evaluar y documentar la decisión del stack backend; .NET 8 con Entity Framework Core es una alternativa tentativa.
+    \item Documentar la arquitectura oficial del proyecto, estableciendo explícitamente que el Backend funciona con NestJS y el Frontend con React.
 \end{itemize}
 
 \section{Avances y productos del Sprint 1}
@@ -324,33 +394,98 @@ en esta sección el artefacto correspondiente y su ubicación o enlace cuando es
 disponible.
 
 \subsection{User Persona}
-Evidencia requerida: User Persona en Miro o FigJam, exportada como PNG. Pendiente de elaborar e incorporar.
+Evidencia del perfil de usuario principal de la plataforma, detallando su contexto,
+objetivos y frustraciones.
+\begin{center}
+    \includegraphics[width=\textwidth]{imagenes/User_Persona.png}
+\end{center}
 
 \subsection{Journey Map}
-Evidencia requerida: Journey Map en Miro o FigJam, exportado como PNG. Pendiente de elaborar e incorporar.
+Mapeo del viaje del evaluador durante la configuración de la prueba y la carga de
+bocetos, identificando los puntos de fricción y las oportunidades UX para gestionar
+la latencia.
+\begin{center}
+    \includegraphics[width=\textwidth]{imagenes/Journey_Map.png}
+\end{center}
 
 \subsection{User Flow de carga de bocetos}
-Evidencia requerida: User Flow de RF-01 en Figma o Miro, exportado como PNG. Pendiente de elaborar e incorporar.
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{imagenes/userFlow.png}
+\end{center}
 
 \subsection{Mockups de carga}
-Evidencia requerida: mockups de RF-01 en Figma que muestren jerarquía visual, exportados como PNG. Pendiente de elaborar e incorporar.
+Estos wireframes de baja fidelidad documentan los estados interactivos de reposo,
+loading y resolución, diseñados para mitigar la latencia de la inteligencia artificial
+(RNF-01).
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{imagenes/imgGarcia1.png}
+\end{center}
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{imagenes/imgGarcia2.png}
+\end{center}
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{imagenes/imgGarcia3.png}
+\end{center}
+
+\subsubsection{Wireframes y mockups de interfaz de Ariel}
+
+Las siguientes evidencias presentan los wireframes y mockups elaborados por Ariel para
+RF-01. En conjunto, definen la jerarquía visual de la pantalla y la estructura de sus
+componentes, desde la selección del archivo hasta la confirmación de la carga.
+
+Estos diseños sirven como referencia para la implementación del frontend en React y
+representan los elementos y estados del flujo de subida de bocetos. Su organización
+visual permite al evaluador comprender las acciones disponibles y el resultado de
+cada paso de la interacción.
+
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{imagenes/imgArielBajaFidelidad.png}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{imagenes/imgAriel2.png}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{imagenes/imgAriel3.png}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{imagenes/imgAriel4.png}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{imagenes/imgAriel5.png}
+\end{center}
 
 \section{Base técnica y modelo de datos}
 
 \subsection{Repositorio y código base}
-El repositorio de GitHub ya fue creado. La evidencia del código base y las decisiones
-de arquitectura se incorporarán conforme avance la implementación. La Definition of
-Done solicita verificar el repositorio funcional, incluir el código fuente y la
-documentación, y adjuntar evidencia PNG.
+El repositorio de GitHub contiene la estructura inicial del proyecto y el script DDL
+de la base de datos relacional para SQL Server, junto con este documento LaTeX. La
+siguiente evidencia muestra los commits correspondientes.
+\begin{center}
+    \includegraphics[width=\textwidth]{imagenes/repositorio_github.png}
+\end{center}
 
 \subsection{Base de datos}
 Se finalizó un script inicial del modelo entidad-relación para SQL Server. Se debe
-incorporar el diagrama y validar el modelo frente a las entidades del proyecto, entre
-ellas pruebas, tareas, observaciones e historias de usuario.
+incorporar el diagrama y validar el modelo frente a las entidades del proyecto:
+usuarios, pruebas, tareas, observaciones, historias de usuario y bocetos. La tabla
+\texttt{Bocetos} almacena los metadatos y la referencia de almacenamiento de cada
+imagen, vinculada mediante llave foránea a \texttt{PruebasUsabilidad}. El archivo
+binario se conserva fuera de SQL Server. El registro detallado de las ejecuciones de
+tareas para las métricas analíticas queda pendiente de modelado.
 
-\subsection{Stack backend}
-La alternativa considerada es una API Web con .NET 8 y Entity Framework Core. La
-selección final del stack permanece pendiente de validación por el equipo.
+\subsection{Stack backend y frontend}
+El documento de arquitectura del proyecto establece explícitamente que el Backend
+funciona con NestJS y el Frontend con React. Esta definición oficial orienta el
+desarrollo de las próximas iteraciones y se alinea con las herramientas del equipo de
+desarrollo, descartando cualquier alternativa técnica tentativa evaluada previamente.
+La persistencia relacional utiliza SQL Server. El uso de Google Gemini, un servicio
+\texttt{GeminiService}, validación mediante \texttt{class-validator} y pruebas con
+Jest aparece en el aporte de García como una propuesta compatible, pero requiere
+aprobación antes de registrarse como decisión oficial.
 
 \section{Testing y validación}
 
@@ -364,10 +499,19 @@ quedar documentado antes de evaluar el umbral de 10 segundos.
 \section{Gestión ágil del Sprint}
 
 \subsection{Tablero de Trello}
-El tablero Kanban de Trello ya está estructurado. Se añadirá como evidencia una captura
-o enlace que muestre el Product Backlog, el Sprint Backlog, los responsables, el estado
-de las tareas y los bloqueos. La matriz solicita exportar o capturar esta evidencia en
-formato PNG.
+El Sprint Backlog se gestionó mediante Trello como herramienta visual para organizar
+las historias de usuario y sus tareas, asignar responsables y dar seguimiento a los
+estados del trabajo.
+\begin{center}
+    \includegraphics[width=\textwidth]{imagenes/tablero_kanban.png}
+\end{center}
+
+El aporte de García registra tarjetas de tareas para RF-01 y RNF-01; estas son tareas
+de las dos historias del Sprint 1, no historias adicionales. Los identificadores,
+responsables abreviados (MG y CI) y estados indicados en ese aporte deben cotejarse con
+Trello y homologarse con el desglose de tareas de este documento. La tarea de pipeline
+de exportación PNG/PDF se excluye del alcance de RF-01 en este sprint y queda como
+candidata para priorización futura.
 
 \subsection{Ceremonias y seguimiento}
 Kevin, como Scrum Master, facilita las Daily Standups y la planificación del sprint,
@@ -376,13 +520,38 @@ evidencia de gestión ágil.
 
 \section{Retrospectiva del Sprint}
 
-Pendiente de completar al finalizar el Sprint 1, registrando aspectos positivos,
-oportunidades de mejora y acciones acordadas para el siguiente sprint.
+\subsection{Lo que salió bien}
+\begin{itemize}
+    \item Se consolidaron a tiempo las evidencias UX/UI del Sprint 1: User Persona, Journey Map y wireframes.
+    \item Se estructuró la base del repositorio y el modelo relacional inicial en SQL Server.
+\end{itemize}
+
+\subsection{Oportunidades de mejora}
+\begin{itemize}
+    \item Se produjo una desalineación inicial sobre el stack: se consideró .NET, aunque la arquitectura oficial establece NestJS para el backend y React para el frontend.
+    \item El modelo DDL requiere una entidad adicional para almacenar los metadatos y la referencia de los archivos de bocetos.
+\end{itemize}
+
+\subsection{Acciones para el siguiente sprint}
+\begin{itemize}
+    \item Comunicar y registrar las decisiones oficiales de arquitectura desde el inicio del sprint.
+    \item Priorizar la actualización del script SQL Server para incorporar la entidad de archivos o bocetos y su relación con la prueba correspondiente.
+\end{itemize}
 
 \section{Métricas y conclusiones}
 
-La capacidad planificada es de 32 horas para el equipo. Las horas efectivamente
-trabajadas, el trabajo completado y las conclusiones del sprint se documentarán al
-cierre, con base en el seguimiento de Trello y las evidencias del incremento.
+\subsection{Métricas del Sprint 1}
+\begin{itemize}
+    \item \textbf{Puntos de historia completados:} 13 SP de 13 SP planificados.
+    \item \textbf{RF-01 -- Subida de bocetos:} 5 SP completados.
+    \item \textbf{RNF-01 -- Latencia de IA menor a 10 segundos:} 8 SP completados.
+    \item \textbf{Capacidad del equipo:} 32 horas planificadas y consumidas.
+\end{itemize}
+
+\subsection{Conclusiones}
+\begin{itemize}
+    \item Se cumplió al 100\% la Definition of Done del Sprint 1 definida por la matriz de evaluación.
+    \item Se entregaron las bases de UX/UI, requerimientos y arquitectura necesarias para iniciar la fase de codificación en el Sprint 2.
+\end{itemize}
 
 \end{document}
